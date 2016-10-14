@@ -1,0 +1,25 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>images/pauseIcon1.png</file>
+        <file>images/playIcon1.png</file>
+        <file>images/musicIcon1.png</file>
+        <file>background/background.png</file>
+        <file>images/appIcon.ico</file>
+        <file>bottomDashboard/Flickable.qml</file>
+        <file>bottomDashboard/Climate/climate.gif</file>
+        <file>bottomDashboard/Climate/Climate.qml</file>
+        <file>bottomDashboard/cloudy.png</file>
+        <file>bottomDashboard/few-clouds.png</file>
+        <file>bottomDashboard/few-cloudy.png</file>
+        <file>bottomDashboard/fog.png</file>
+        <file>bottomDashboard/haze.png</file>
+        <file>bottomDashboard/icy.png</file>
+        <file>bottomDashboard/rainshower.png</file>
+        <file>bottomDashboard/rainy.png</file>
+        <file>bottomDashboard/snowy.png</file>
+        <file>bottomDashboard/storm.png</file>
+        <file>bottomDashboard/sunny.png</file>
+        <file>bottomDashboard/thunderstorm.png</file>
+    </qresource>
+</RCC>
