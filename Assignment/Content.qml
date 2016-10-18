@@ -561,24 +561,22 @@ Item {
             style: CalendarStyle{
                 gridVisible:  false
                 dayDelegate: Rectangle{
+                    border.color:"#0fbeb9"
+                    border.width: .5
                     gradient: Gradient{
                         GradientStop{
                             position: 0.00
-                            color:styleData.selected? "#0fbeb9" : (styleData.visibleMonth && styleData.valid ? "#111" : "#0fbeb9");
+                            color:styleData.selected? "#0fbeb9" : (styleData.visibleMonth && styleData.valid ? "#111" : "#DCDCDC");
                         }
                         GradientStop{
                             position: 1.00
-                            color:styleData.selected? "#0fbeb9" : (styleData.visibleMonth && styleData.valid ? "#111" : "#0fbeb9");
-                        }
-                        GradientStop{
-                            position: 1.00
-                            color:styleData.selected? "#0fbeb9" : (styleData.visibleMonth && styleData.valid ? "#111" : "#0fbeb9");
+                            color:styleData.selected? "#0fbeb9" : (styleData.visibleMonth && styleData.valid ? "#111" : "#DCDCDC");
                         }
                     }
                     Label{
                         text: styleData.date.getDate()
                         anchors.centerIn: parent
-                        color:styleData.valid? "white" : "#0fbeb9"
+                        color:"white"
                     }
 
                     Rectangle{
