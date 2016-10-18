@@ -8,6 +8,10 @@ CONFIG += c++11
 
 SOURCES += main.cpp
 
+DISTFILES += \
+    Content.qml \
+    SettingsIcon.qml
+
 RESOURCES += qml.qrc
 
 RC_ICONS = images/appIcon.ico

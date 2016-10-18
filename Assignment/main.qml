@@ -1,10 +1,14 @@
 import QtQuick 2.5
 import QtQuick.Window 2.2
 import QtQuick.Layouts 1.0
-import QtQuick.Controls 1.0
 import QtQuick.Controls.Styles 1.2
 import QtQuick.Dialogs 1.0
 import QtMultimedia 5.0
+import QtQuick.Controls 1.4
+import QtQuick.Controls.Styles.Flat 1.0 as Flat
+import QtQuick.Extras 1.4
+import QtQuick.Extras.Private 1.0
+import QtGraphicalEffects 1.0
 
 import "bottomDashboard"
 
@@ -20,12 +24,12 @@ import "bottomDashboard"
 
 
 Window {
-    id: root
+    id: window
     visible: true
     width: 1920
     height: 720
-    property alias middleBoard: middleBoard
 
+    property alias middleBoard: middleBoard
     property alias localTime: localTime
     property alias localDate: localDate
     property alias trackDuration: trackDuration
@@ -192,15 +196,28 @@ Window {
                         }
                     }
 
-                    //add styles for customzing slider
-                    style:SliderStyle{
+                    style: SliderStyle {
                         handle: Image{
-                            source:"images/musicIcon1.png"
-                            width:16
-                            height: 16
+                            source:"images/tickmark.png"
+                            width:17
+                            height: 17
+                        }
+                        groove: Item {
+                            implicitHeight: 1
 
+                            LinearGradient {
+                                anchors.fill: parent
+                                start: Qt.point(0, control.height / 2)
+                                end: Qt.point(control.width, control.height / 2)
+                                gradient: Gradient {
+                                    GradientStop { position: 0.0; color: "#0fbeb9" }
+                                    GradientStop { position: control.value; color: "brown" }
+                                    GradientStop { position: 1.0; color: "#0fbeb9" }
+                                }
+                            }
                         }
                     }
+
                 }
 
                 Label {

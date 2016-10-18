@@ -8,7 +8,7 @@ import QtQuick.Dialogs 1.0
 import QtMultimedia 5.0
 
 /**
-*   ButtomDashBoard: MenuItem 1 - Unknown(Maybe weather?)
+*   ButtomDashBoard: MenuItem 2 - Calendar
 *
 *   The second item demostrates a flat style Calendar, which provides a neat and modern
 *   look to get the weekdays, month and date.
@@ -17,28 +17,30 @@ import QtMultimedia 5.0
 
 Item {
 
-    property alias firstItemArea: firstItemArea
-
     AnimatedImage {
-        id: menuItem1
+        id: menuItem2
         x: 0
         y: 0
         width: 100
         height: 100
-        source: "climate.gif"
-        scale: firstItemArea.containsMouse ? 0.7 : 1.0
+
+        // source: later shall be replaced by a calendar/time .gif 512 x 512 px
+
+        source: "qrc:/bottomDashboard/few-clouds.png"
+        scale: calendarItem.containsMouse ? 0.7 : 1.0
 
         Loader {
-            id: pageLoader
+            id: pageLoader2
         }
 
 
         MouseArea {
-            id: firstItemArea
+            id: calendarItem
             hoverEnabled: true
             anchors.fill: parent
-            onClicked: pageLoader.source = "qrc:/flatwindow.qml"
+            onClicked: pageLoader2.source = "qrc:/flatwindow.qml"
 
         }
+
     }
 }

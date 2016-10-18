@@ -3,13 +3,12 @@ import QtQuick.Controls 1.4
 import QtQuick.Controls.Styles 1.4
 
 import "Climate"
+import "MenuItemSecond"
 
 
 Item {
     width: 700
     height: 100
-
-    property color menuItemBackgroundColor: "#0fbeb9"
 
     Flickable {
         id: flickable1
@@ -27,17 +26,15 @@ Item {
             y: flickable1.y
             width: 100
             height: 100
+
         }
 
-        Image {
+        SecondItem {
             id: image2
             x: 100
-            y: 0
+            y: flickable1.y
             width: 100
             height: 100
-            sourceSize.height: 80
-            sourceSize.width: 80
-            source: "few-clouds.png"
         }
 
         Image {

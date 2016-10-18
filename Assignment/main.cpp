@@ -7,6 +7,7 @@
 #include <QtCore>
 #include <QtGui>
 #include <QtWidgets>
+#include <QtGui/QFontDatabase>
 
 
 int main(int argc, char *argv[]){
@@ -21,6 +22,17 @@ int main(int argc, char *argv[]){
     const QStringList arguments = QCoreApplication::arguments();
     const QUrl commandLineUrl = arguments.size() > 1 ? QUrl::fromLocalFile(arguments.at(1)) : QUrl();
 
+
+    if (qgetenv("QT_QUICK_CONTROLS_1_STYLE").isEmpty()) {
+#ifdef QT_STATIC
+        // Need a full path to find the style when built statically
+        qputenv("QT_QUICK_CONTROLS_1_STYLE", ":/ExtrasImports/QtQuick/Controls/Styles/Flat");
+#else
+        qputenv("QT_QUICK_CONTROLS_1_STYLE", "Flat");
+#endif
+    }
+
+
     engine.rootContext()->setContextProperty(QStringLiteral("url"), commandLineUrl);
     engine.load(QUrl("qrc:/main.qml"));
 
@@ -30,11 +42,6 @@ int main(int argc, char *argv[]){
     else
         return -1;
 
-
-
-
     return app.exec();
-
-
 
 }

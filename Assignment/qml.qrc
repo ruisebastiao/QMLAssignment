@@ -21,5 +21,19 @@
         <file>bottomDashboard/storm.png</file>
         <file>bottomDashboard/sunny.png</file>
         <file>bottomDashboard/thunderstorm.png</file>
+        <file>Content.qml</file>
+        <file>SettingsIcon.qml</file>
+        <file>images/piemenu-bw-normal.png</file>
+        <file>images/piemenu-bw-pressed.png</file>
+        <file>images/piemenu-image-bw.jpg</file>
+        <file>images/piemenu-image-rgb.jpg</file>
+        <file>images/piemenu-image-sepia.jpg</file>
+        <file>images/piemenu-rgb-normal.png</file>
+        <file>images/piemenu-rgb-pressed.png</file>
+        <file>images/piemenu-sepia-normal.png</file>
+        <file>images/piemenu-sepia-pressed.png</file>
+        <file>flatwindow.qml</file>
+        <file>images/tickmark.png</file>
+        <file>bottomDashboard/MenuItemSecond/SecondItem.qml</file>
     </qresource>
 </RCC>
