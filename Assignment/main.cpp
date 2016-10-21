@@ -8,11 +8,22 @@
 #include <QtGui>
 #include <QtWidgets>
 #include <QtGui/QFontDatabase>
+#include <QtGui/QGuiApplication>
+#include <QtGui/QOpenGLContext>
+#include <QtQuick/QQuickView>
+#include <QtQuick/QQuickItem>
+#include <QtQml/QQmlContext>
+#include "touchsettings.h"
+
+#include "qtquickcontrolsapplication.h"
+#include "sqleventmodel.h"
 
 
 int main(int argc, char *argv[]){
 
     QGuiApplication app(argc, argv);
+
+    qmlRegisterType<SqlEventModel>("org.qtproject.examples.calendar", 1, 0, "SqlEventModel");
 
     QQmlApplicationEngine engine;
     const QStringList musicPaths = QStandardPaths::standardLocations(QStandardPaths::MusicLocation);
@@ -32,7 +43,17 @@ int main(int argc, char *argv[]){
 #endif
     }
 
+    QSurfaceFormat format;
+    if (QOpenGLContext::openGLModuleType() == QOpenGLContext::LibGL) {
+        format.setVersion(3, 2);
+        format.setProfile(QSurfaceFormat::CoreProfile);
+    }
+    format.setDepthBufferSize(24);
+    format.setStencilBufferSize(8);
 
+    TouchSettings touchSettings;
+
+    engine.rootContext()->setContextProperty("touchSettings", &touchSettings);
     engine.rootContext()->setContextProperty(QStringLiteral("url"), commandLineUrl);
     engine.load(QUrl("qrc:/main.qml"));
 

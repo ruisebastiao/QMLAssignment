@@ -6,34 +6,27 @@
         <file>images/musicIcon1.png</file>
         <file>background/background.png</file>
         <file>images/appIcon.ico</file>
-        <file>bottomDashboard/Flickable.qml</file>
-        <file>bottomDashboard/Climate/climate.gif</file>
-        <file>bottomDashboard/Climate/Climate.qml</file>
-        <file>bottomDashboard/cloudy.png</file>
-        <file>bottomDashboard/few-clouds.png</file>
-        <file>bottomDashboard/few-cloudy.png</file>
-        <file>bottomDashboard/fog.png</file>
-        <file>bottomDashboard/haze.png</file>
-        <file>bottomDashboard/icy.png</file>
-        <file>bottomDashboard/rainshower.png</file>
-        <file>bottomDashboard/rainy.png</file>
-        <file>bottomDashboard/snowy.png</file>
-        <file>bottomDashboard/storm.png</file>
-        <file>bottomDashboard/sunny.png</file>
-        <file>bottomDashboard/thunderstorm.png</file>
         <file>Content.qml</file>
-        <file>SettingsIcon.qml</file>
-        <file>images/piemenu-bw-normal.png</file>
-        <file>images/piemenu-bw-pressed.png</file>
-        <file>images/piemenu-image-bw.jpg</file>
-        <file>images/piemenu-image-rgb.jpg</file>
-        <file>images/piemenu-image-sepia.jpg</file>
-        <file>images/piemenu-rgb-normal.png</file>
-        <file>images/piemenu-rgb-pressed.png</file>
-        <file>images/piemenu-sepia-normal.png</file>
-        <file>images/piemenu-sepia-pressed.png</file>
-        <file>flatwindow.qml</file>
         <file>images/tickmark.png</file>
-        <file>bottomDashboard/MenuItemSecond/SecondItem.qml</file>
+        <file>ThirdItemWindow.qml</file>
+        <file>images/albumcover.png</file>
+        <file>images/demotitle.png</file>
+        <file>images/normalmap.png</file>
+        <file>images/pausehoverpressed.png</file>
+        <file>images/pausenormal.png</file>
+        <file>images/playhoverpressed.png</file>
+        <file>images/playnormal.png</file>
+        <file>images/songtitle.png</file>
+        <file>images/stopdisabled.png</file>
+        <file>images/stophoverpressed.png</file>
+        <file>images/stopnormal.png</file>
+        <file>meshes/circle.obj</file>
+        <file>meshes/progressbar.obj</file>
+        <file>music/visualization.raw</file>
+        <file>music/tiltshifted_lost_neon_sun.mp3</file>
+        <file>images/eventindicator.png</file>
+        <file>images/weatherinfo.gif</file>
+        <file>AutoPlayer2D.qml</file>
+        <file>CalendarEventHandler.qml</file>
     </qresource>
 </RCC>

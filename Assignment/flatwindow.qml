@@ -1,444 +1,502 @@
 import QtQuick 2.4
 import QtQuick.Layouts 1.0
 import QtQuick.Controls 1.4
+import QtQuick.Controls.Styles 1.4
 import QtQuick.Controls.Styles.Flat 1.0 as Flat
 import QtQuick.Extras 1.4
 import QtQuick.Extras.Private 1.0
 
 
 ApplicationWindow {
-    id: window
-    width: 480
-    height: 480
-    color: "#0fbeb9"
-    flags: Qt.FramelessWindowHint
-    opacity: 0.95
-    visible: true
+//    id: window
+//    width: 480
+//    height: 480
+//    color: "#0fbeb9"
+//    //flags: Qt.FramelessWindowHint
+//    opacity: 0.95
+//    visible: true
 
-    readonly property bool contentLoaded: contentLoader.item
-    readonly property alias anchorItem: controlsMenu
-    property int currentMenu: -1
-    readonly property int textMargins: Math.round(32 * Flat.FlatStyle.scaleFactor)
-    readonly property int menuMargins: Math.round(13 * Flat.FlatStyle.scaleFactor)
-    readonly property int menuWidth: Math.min(window.width, window.height) * 0.75
+//    Calendar {
+//        anchors.fill: parent
+//        weekNumbersVisible: true
+//        frameVisible: false//settingsData.frames
 
-    onCurrentMenuChanged: {
-        xBehavior.enabled = true;
-        anchorCurrentMenu();
-    }
+//        style: CalendarStyle{
+//            gridVisible:  false
+//            dayDelegate: Rectangle{
+//                border.color:"#0fbeb9"
+//                border.width: .5
 
-    onMenuWidthChanged: anchorCurrentMenu()
+//                gradient: Gradient{
+//                    GradientStop{
+//                        position: 0.00
+//                        color:styleData.selected? "#0fbeb9" : (styleData.visibleMonth && styleData.valid ? "#111" : "#DCDCDC");
+//                    }
+//                    GradientStop{
+//                        position: 1.00
+//                        color:styleData.selected? "#0fbeb9" : (styleData.visibleMonth && styleData.valid ? "#111" : "#DCDCDC");
+//                    }
+//                }
+//                Label{
+//                    text: styleData.date.getDate()
+//                    anchors.centerIn: parent
+//                    color:"white"
+//                }
 
-    function anchorCurrentMenu() {
-        switch (currentMenu) {
-        case -1:
-            anchorItem.x = -menuWidth;
-            break;
-        case 0:
-            anchorItem.x = 0;
-            break;
-        case 1:
-            anchorItem.x = -menuWidth * 2;
-            break;
-        }
-    }
+//                Rectangle{
+//                    width: parent.width
+//                    height: 1
+//                    color:"#0fbeb9"
+//                    anchors.right: parent.right
+//                }
+//            }
+//        }
+//    }
 
-    Item {
-        id: container
-        anchors.fill: parent
 
-        Item {
-            id: loadingScreen
-            anchors.fill: parent
-            visible: !contentLoaded
 
-            Timer {
-                running: true
-                interval: 100
-                // TODO: Find a way to know when the loading screen has been rendered instead
-                // of using an abritrary amount of time.
-                onTriggered:
-                    contentLoader.sourceComponent = Qt.createComponent("Content.qml")
 
-            }
 
-            Column {
-                anchors.centerIn: parent
-                spacing: Math.round(10 * Flat.FlatStyle.scaleFactor)
 
-                BusyIndicator {
-                    anchors.horizontalCenter: parent.horizontalCenter
-                }
 
-                Label {
-                    text: "Loading Light Flat UI..."
-                    width: Math.min(loadingScreen.width, loadingScreen.height) * 0.8
-                    height: font.pixelSize
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    renderType: Text.QtRendering
-                    font.pixelSize: Math.round(26 * Flat.FlatStyle.scaleFactor)
-                    horizontalAlignment: Text.AlignHCenter
-                    fontSizeMode: Text.Fit
-                    font.family: Flat.FlatStyle.fontFamily
-                    font.weight: Font.Light
-                }
-            }
-        }
 
-        Rectangle {
-            id: controlsMenu
-            x: container.x - width
-            z: contentContainer.z + 1
-            width: menuWidth
-            height: parent.height
 
-            // Don't let the menus become visible when resizing the window
-            Binding {
-                target: controlsMenu
-                property: "x"
-                value: container.x - controlsMenu.width
-                when: !xBehavior.enabled && !xNumberAnimation.running && currentMenu == -1
-            }
 
-            Behavior on x {
-                id: xBehavior
-                enabled: false
-                NumberAnimation {
-                    id: xNumberAnimation
-                    easing.type: Easing.OutExpo
-                    duration: 500
-                    onRunningChanged: xBehavior.enabled = false
-                }
-            }
 
-            Rectangle {
-                id: controlsTitleBar
-                width: parent.width
-                height: toolBar.height
-                color: Flat.FlatStyle.defaultTextColor
 
-                Label {
-                    text: "Controls"
-                    font.family: Flat.FlatStyle.fontFamily
-                    font.pixelSize: Math.round(16 * Flat.FlatStyle.scaleFactor)
-                    renderType: Text.QtRendering
-                    color: "#0fbeb9"
-                    anchors.left: parent.left
-                    anchors.leftMargin: menuMargins
-                    anchors.verticalCenter: parent.verticalCenter
-                }
-            }
 
-            ListView {
-                id: controlView
-                width: parent.width
-                anchors.top: controlsTitleBar.bottom
-                anchors.bottom: parent.bottom
-                clip: true
-                currentIndex: 0
-                model: contentLoaded ? contentLoader.item.componentModel : null
-                delegate: MouseArea {
-                    id: delegateItem
-                    width: parent.width
-                    height: 64 * Flat.FlatStyle.scaleFactor
-                    onClicked: {
-                        if (controlView.currentIndex != index)
-                            controlView.currentIndex = index;
 
-                        currentMenu = -1;
-                    }
 
-                    Rectangle {
-                        width: parent.width
-                        height: Flat.FlatStyle.onePixel
-                        anchors.bottom: parent.bottom
-                        color: Flat.FlatStyle.lightFrameColor
-                    }
 
-                    Label {
-                        text: delegateItem.ListView.view.model[index].name
-                        font.pixelSize: Math.round(15 * Flat.FlatStyle.scaleFactor)
-                        font.family: Flat.FlatStyle.fontFamily
-                        renderType: Text.QtRendering
-                        color: delegateItem.ListView.isCurrentItem ? Flat.FlatStyle.styleColor : Flat.FlatStyle.defaultTextColor
-                        anchors.left: parent.left
-                        anchors.leftMargin: menuMargins
-                        anchors.verticalCenter: parent.verticalCenter
-                    }
-                }
 
-                Rectangle {
-                    width: parent.height
-                    height: 8 * Flat.FlatStyle.scaleFactor
-                    rotation: 90
-                    anchors.left: parent.right
-                    transformOrigin: Item.TopLeft
 
-                    gradient: Gradient {
-                        GradientStop {
-                            color: Qt.rgba(0, 0, 0, 0.15)
-                            position: 0
-                        }
-                        GradientStop {
-                            color: Qt.rgba(0, 0, 0, 0.05)
-                            position: 0.5
-                        }
-                        GradientStop {
-                            color: Qt.rgba(0, 0, 0, 0)
-                            position: 1
-                        }
-                    }
-                }
-            }
-        }
 
-        Item {
-            id: contentContainer
-            anchors.top: parent.top
-            anchors.bottom: parent.bottom
-            anchors.left: controlsMenu.right
-            width: parent.width
 
-            ToolBar {
-                id: toolBar
-                visible: !loadingScreen.visible
-                width: parent.width
-                height: 54 * Flat.FlatStyle.scaleFactor
-                z: contentLoader.z + 1
-                style: Flat.ToolBarStyle {
-                    padding.left: 0
-                    padding.right: 0
-                }
 
-                RowLayout {
-                    anchors.fill: parent
+////    readonly property bool contentLoaded: contentLoader.item
+////    readonly property alias anchorItem: controlsMenu
+////    property int currentMenu: -1
+////    readonly property int textMargins: Math.round(32 * Flat.FlatStyle.scaleFactor)
+////    readonly property int menuMargins: Math.round(13 * Flat.FlatStyle.scaleFactor)
+////    readonly property int menuWidth: Math.min(window.width, window.height) * 0.75
 
-                    MouseArea {
-                        id: controlsButton
-                        Layout.preferredWidth: toolBar.height + textMargins
-                        Layout.preferredHeight: toolBar.height
-                        onClicked: currentMenu = currentMenu == 0 ? -1 : 0
+////    onCurrentMenuChanged: {
+////        xBehavior.enabled = true;
+////        anchorCurrentMenu();
+////    }
 
-                        Column {
-                            id: controlsIcon
-                            anchors.left: parent.left
-                            anchors.leftMargin: textMargins
-                            anchors.verticalCenter: parent.verticalCenter
-                            spacing: Math.round(2 * Flat.FlatStyle.scaleFactor)
+////    onMenuWidthChanged: anchorCurrentMenu()
 
-                            Repeater {
-                                model: 3
+////    function anchorCurrentMenu() {
+////        switch (currentMenu) {
+////        case -1:
+////            anchorItem.x = -menuWidth;
+////            break;
+////        case 0:
+////            anchorItem.x = 0;
+////            break;
+////        case 1:
+////            anchorItem.x = -menuWidth * 2;
+////            break;
+////        }
+////    }
 
-                                Rectangle {
-                                    width: Math.round(4 * Flat.FlatStyle.scaleFactor)
-                                    height: width
-                                    radius: width / 2
-                                    color: Flat.FlatStyle.defaultTextColor
-                                }
-                            }
-                        }
-                    }
+////    Item {
+////        id: container
+////        anchors.fill: parent
 
-                    Text {
-                        text: "BottomBoard MenuItem 1"
-                        font.family: Flat.FlatStyle.fontFamily
-                        font.pixelSize: Math.round(16 * Flat.FlatStyle.scaleFactor)
-                        horizontalAlignment: Text.AlignHCenter
-                        color: "#0fbeb9"
-                        Layout.fillWidth: true
-                    }
+////        Item {
+////            id: loadingScreen
+////            anchors.fill: parent
+////            visible: !contentLoaded
 
-                    MouseArea {
-                        id: settingsButton
-                        Layout.preferredWidth: controlsButton.Layout.preferredWidth
-                        Layout.preferredHeight: controlsButton.Layout.preferredHeight
-                        onClicked: currentMenu = currentMenu == 1 ? -1 : 1
+////            Timer {
+////                running: true
+////                interval: 100
+////                // TODO: Find a way to know when the loading screen has been rendered instead
+////                // of using an abritrary amount of time.
+////                onTriggered:
+////                    contentLoader.sourceComponent = Qt.createComponent("Content.qml")
 
-                        SettingsIcon {
-                            width: Math.round(32 * Flat.FlatStyle.scaleFactor)
-                            height: Math.round(32 * Flat.FlatStyle.scaleFactor)
-                            anchors.verticalCenter: parent.verticalCenter
-                            anchors.right: parent.right
-                            anchors.rightMargin: textMargins - Math.round(8 * Flat.FlatStyle.scaleFactor)
-                        }
-                    }
-                }
-            }
+////            }
 
-            Loader {
-                id: contentLoader
-                anchors.left: parent.left
-                anchors.right: parent.right
-                anchors.top: toolBar.bottom
-                anchors.bottom: parent.bottom
+////            Column {
+////                anchors.centerIn: parent
+////                spacing: Math.round(10 * Flat.FlatStyle.scaleFactor)
 
-                property QtObject settingsData: QtObject {
-                    readonly property bool checks: disableSingleItemsAction.checked
-                    readonly property bool frames: !greyBackgroundAction.checked
-                    readonly property bool allDisabled: disableAllAction.checked
-                }
-                property QtObject controlData: QtObject {
-                    readonly property int componentIndex: controlView.currentIndex
-                    readonly property int textMargins: window.textMargins
-                }
+////                BusyIndicator {
+////                    anchors.horizontalCenter: parent.horizontalCenter
+////                }
 
-                MouseArea {
-                    enabled: currentMenu != -1
-                    // We would be able to just set this to true here, if it weren't for QTBUG-43083.
-                    hoverEnabled: enabled
-                    anchors.fill: parent
-                    preventStealing: true
-                    onClicked: currentMenu = -1
-                    focus: enabled
-                    z: 1000
-                }
-            }
-        }
+////                Label {
+////                    text: "Loading Light Flat UI..."
+////                    width: Math.min(loadingScreen.width, loadingScreen.height) * 0.8
+////                    height: font.pixelSize
+////                    anchors.horizontalCenter: parent.horizontalCenter
+////                    renderType: Text.QtRendering
+////                    font.pixelSize: Math.round(26 * Flat.FlatStyle.scaleFactor)
+////                    horizontalAlignment: Text.AlignHCenter
+////                    fontSizeMode: Text.Fit
+////                    font.family: Flat.FlatStyle.fontFamily
+////                    font.weight: Font.Light
+////                }
+////            }
+////        }
 
-        Rectangle {
-            id: settingsMenu
-            z: contentContainer.z + 1
-            width: menuWidth
-            height: parent.height
-            anchors.left: contentContainer.right
+////        Rectangle {
+////            id: controlsMenu
+////            x: container.x - width
+////            z: contentContainer.z + 1
+////            width: menuWidth
+////            height: parent.height
 
-            Rectangle {
-                id: optionsTitleBar
-                width: parent.width
-                height: toolBar.height
-                color: Flat.FlatStyle.defaultTextColor
+////            // Don't let the menus become visible when resizing the window
+////            Binding {
+////                target: controlsMenu
+////                property: "x"
+////                value: container.x - controlsMenu.width
+////                when: !xBehavior.enabled && !xNumberAnimation.running && currentMenu == -1
+////            }
 
-                Label {
-                    text: "Options"
-                    font.family: Flat.FlatStyle.fontFamily
-                    font.pixelSize: Math.round(16 * Flat.FlatStyle.scaleFactor)
-                    renderType: Text.QtRendering
-                    color: "#0fbeb9"
-                    anchors.left: parent.left
-                    anchors.leftMargin: menuMargins
-                    anchors.verticalCenter: parent.verticalCenter
-                }
-            }
+////            Behavior on x {
+////                id: xBehavior
+////                enabled: false
+////                NumberAnimation {
+////                    id: xNumberAnimation
+////                    easing.type: Easing.OutExpo
+////                    duration: 500
+////                    onRunningChanged: xBehavior.enabled = false
+////                }
+////            }
 
-            Action {
-                id: disableAllAction
-                checkable: true
-                checked: false
-            }
+////            Rectangle {
+////                id: controlsTitleBar
+////                width: parent.width
+////                height: toolBar.height
+////                color: Flat.FlatStyle.defaultTextColor
 
-            Action {
-                id: disableSingleItemsAction
-                checkable: true
-                checked: false
-            }
+////                Label {
+////                    text: "Controls"
+////                    font.family: Flat.FlatStyle.fontFamily
+////                    font.pixelSize: Math.round(16 * Flat.FlatStyle.scaleFactor)
+////                    renderType: Text.QtRendering
+////                    color: "#0fbeb9"
+////                    anchors.left: parent.left
+////                    anchors.leftMargin: menuMargins
+////                    anchors.verticalCenter: parent.verticalCenter
+////                }
+////            }
 
-            Action {
-                id: greyBackgroundAction
-                checkable: true
-                checked: false
-            }
+////            ListView {
+////                id: controlView
+////                width: parent.width
+////                anchors.top: controlsTitleBar.bottom
+////                anchors.bottom: parent.bottom
+////                clip: true
+////                currentIndex: 0
+////                model: contentLoaded ? contentLoader.item.componentModel : null
+////                delegate: MouseArea {
+////                    id: delegateItem
+////                    width: parent.width
+////                    height: 64 * Flat.FlatStyle.scaleFactor
+////                    onClicked: {
+////                        if (controlView.currentIndex != index)
+////                            controlView.currentIndex = index;
 
-            ListView {
-                id: optionsListView
-                width: parent.width
-                anchors.top: optionsTitleBar.bottom
-                anchors.bottom: parent.bottom
-                clip: true
-                interactive: delegateHeight * count > height
+////                        currentMenu = -1;
+////                    }
 
-                readonly property int delegateHeight: 64 * Flat.FlatStyle.scaleFactor
+////                    Rectangle {
+////                        width: parent.width
+////                        height: Flat.FlatStyle.onePixel
+////                        anchors.bottom: parent.bottom
+////                        color: Flat.FlatStyle.lightFrameColor
+////                    }
 
-                model: [
-                    { name: "Disable all", action: disableAllAction },
-                    { name: "Disable single items", action: disableSingleItemsAction },
-                    { name: "Grey background", action: greyBackgroundAction },
-                    { name: "Exit", action: null }
-                ]
-                delegate: Rectangle {
-                    id: optionDelegateItem
-                    width: parent.width
-                    height: optionsListView.delegateHeight
+////                    Label {
+////                        text: delegateItem.ListView.view.model[index].name
+////                        font.pixelSize: Math.round(15 * Flat.FlatStyle.scaleFactor)
+////                        font.family: Flat.FlatStyle.fontFamily
+////                        renderType: Text.QtRendering
+////                        color: delegateItem.ListView.isCurrentItem ? Flat.FlatStyle.styleColor : Flat.FlatStyle.defaultTextColor
+////                        anchors.left: parent.left
+////                        anchors.leftMargin: menuMargins
+////                        anchors.verticalCenter: parent.verticalCenter
+////                    }
+////                }
 
-                    Rectangle {
-                        width: parent.width
-                        height: Flat.FlatStyle.onePixel
-                        anchors.bottom: parent.bottom
-                        color: Flat.FlatStyle.lightFrameColor
-                    }
+////                Rectangle {
+////                    width: parent.height
+////                    height: 8 * Flat.FlatStyle.scaleFactor
+////                    rotation: 90
+////                    anchors.left: parent.right
+////                    transformOrigin: Item.TopLeft
 
-                    Loader {
-                        sourceComponent: optionText !== "Exit"
-                            ? optionsListView.checkBoxComponent : optionsListView.exitComponent
-                        anchors.fill: parent
-                        anchors.leftMargin: menuMargins
+////                    gradient: Gradient {
+////                        GradientStop {
+////                            color: Qt.rgba(0, 0, 0, 0.15)
+////                            position: 0
+////                        }
+////                        GradientStop {
+////                            color: Qt.rgba(0, 0, 0, 0.05)
+////                            position: 0.5
+////                        }
+////                        GradientStop {
+////                            color: Qt.rgba(0, 0, 0, 0)
+////                            position: 1
+////                        }
+////                    }
+////                }
+////            }
+////        }
 
-                        property string optionText: optionsListView.model[index].name
-                        property int optionIndex: index
-                    }
-                }
+////        Item {
+////            id: contentContainer
+////            anchors.top: parent.top
+////            anchors.bottom: parent.bottom
+////            anchors.left: controlsMenu.right
+////            width: parent.width
 
-                property Component checkBoxComponent: Item {
-                    Label {
-                        text: optionText
-                        font.family: Flat.FlatStyle.fontFamily
-                        font.pixelSize: Math.round(15 * Flat.FlatStyle.scaleFactor)
-                        fontSizeMode: Text.Fit
-                        renderType: Text.QtRendering
-                        verticalAlignment: Text.AlignVCenter
-                        color: Flat.FlatStyle.defaultTextColor
-                        height: parent.height
-                        anchors.left: parent.left
-                        anchors.right: checkBox.left
-                        anchors.rightMargin: Flat.FlatStyle.twoPixels
-                    }
+////            ToolBar {
+////                id: toolBar
+////                visible: !loadingScreen.visible
+////                width: parent.width
+////                height: 54 * Flat.FlatStyle.scaleFactor
+////                z: contentLoader.z + 1
+////                style: Flat.ToolBarStyle {
+////                    padding.left: 0
+////                    padding.right: 0
+////                }
 
-                    CheckBox {
-                        id: checkBox
-                        checked: optionsListView.model[optionIndex].action.checked
-                        anchors.right: parent.right
-                        anchors.rightMargin: menuMargins
-                        anchors.verticalCenter: parent.verticalCenter
-                        onCheckedChanged: optionsListView.model[optionIndex].action.checked = checkBox.checked
-                    }
-                }
+////                RowLayout {
+////                    anchors.fill: parent
 
-                property Component exitComponent: MouseArea {
-                    anchors.fill: parent
-                    onClicked: window.close()//Qt.quit()
+////                    MouseArea {
+////                        id: controlsButton
+////                        Layout.preferredWidth: toolBar.height + textMargins
+////                        Layout.preferredHeight: toolBar.height
+////                        onClicked: currentMenu = currentMenu == 0 ? -1 : 0
 
-                    Label {
-                        text: optionText
-                        font.family: Flat.FlatStyle.fontFamily
-                        font.pixelSize: Math.round(15 * Flat.FlatStyle.scaleFactor)
-                        renderType: Text.QtRendering
-                        color: Flat.FlatStyle.defaultTextColor
-                        anchors.verticalCenter: parent.verticalCenter
-                    }
-                }
+////                        Column {
+////                            id: controlsIcon
+////                            anchors.left: parent.left
+////                            anchors.leftMargin: textMargins
+////                            anchors.verticalCenter: parent.verticalCenter
+////                            spacing: Math.round(2 * Flat.FlatStyle.scaleFactor)
 
-                Rectangle {
-                    width: parent.height
-                    height: 8 * Flat.FlatStyle.scaleFactor
-                    rotation: -90
-                    anchors.right: parent.left
-                    transformOrigin: Item.TopRight
+////                            Repeater {
+////                                model: 3
 
-                    gradient: Gradient {
-                        GradientStop {
-                            color: Qt.rgba(0, 0, 0, 0.15)
-                            position: 0
-                        }
-                        GradientStop {
-                            color: Qt.rgba(0, 0, 0, 0.05)
-                            position: 0.5
-                        }
-                        GradientStop {
-                            color: Qt.rgba(0, 0, 0, 0)
-                            position: 1
-                        }
-                    }
-                }
-            }
-        }
-    }
+////                                Rectangle {
+////                                    width: Math.round(4 * Flat.FlatStyle.scaleFactor)
+////                                    height: width
+////                                    radius: width / 2
+////                                    color: Flat.FlatStyle.defaultTextColor
+////                                }
+////                            }
+////                        }
+////                    }
+
+////                    Text {
+////                        text: "BottomBoard MenuItem 1"
+////                        font.family: Flat.FlatStyle.fontFamily
+////                        font.pixelSize: Math.round(16 * Flat.FlatStyle.scaleFactor)
+////                        horizontalAlignment: Text.AlignHCenter
+////                        color: "#0fbeb9"
+////                        Layout.fillWidth: true
+////                    }
+
+////                    MouseArea {
+////                        id: settingsButton
+////                        Layout.preferredWidth: controlsButton.Layout.preferredWidth
+////                        Layout.preferredHeight: controlsButton.Layout.preferredHeight
+////                        onClicked: currentMenu = currentMenu == 1 ? -1 : 1
+
+////                        SettingsIcon {
+////                            width: Math.round(32 * Flat.FlatStyle.scaleFactor)
+////                            height: Math.round(32 * Flat.FlatStyle.scaleFactor)
+////                            anchors.verticalCenter: parent.verticalCenter
+////                            anchors.right: parent.right
+////                            anchors.rightMargin: textMargins - Math.round(8 * Flat.FlatStyle.scaleFactor)
+////                        }
+////                    }
+////                }
+////            }
+
+////            Loader {
+////                id: contentLoader
+////                anchors.left: parent.left
+////                anchors.right: parent.right
+////                anchors.top: toolBar.bottom
+////                anchors.bottom: parent.bottom
+
+////                property QtObject settingsData: QtObject {
+////                    readonly property bool checks: disableSingleItemsAction.checked
+////                    readonly property bool frames: !greyBackgroundAction.checked
+////                    readonly property bool allDisabled: disableAllAction.checked
+////                }
+////                property QtObject controlData: QtObject {
+////                    readonly property int componentIndex: controlView.currentIndex
+////                    readonly property int textMargins: window.textMargins
+////                }
+
+////                MouseArea {
+////                    enabled: currentMenu != -1
+////                    // We would be able to just set this to true here, if it weren't for QTBUG-43083.
+////                    hoverEnabled: enabled
+////                    anchors.fill: parent
+////                    preventStealing: true
+////                    onClicked: currentMenu = -1
+////                    focus: enabled
+////                    z: 1000
+////                }
+////            }
+////        }
+
+////        Rectangle {
+////            id: settingsMenu
+////            z: contentContainer.z + 1
+////            width: menuWidth
+////            height: parent.height
+////            anchors.left: contentContainer.right
+
+////            Rectangle {
+////                id: optionsTitleBar
+////                width: parent.width
+////                height: toolBar.height
+////                color: Flat.FlatStyle.defaultTextColor
+
+////                Label {
+////                    text: "Options"
+////                    font.family: Flat.FlatStyle.fontFamily
+////                    font.pixelSize: Math.round(16 * Flat.FlatStyle.scaleFactor)
+////                    renderType: Text.QtRendering
+////                    color: "#0fbeb9"
+////                    anchors.left: parent.left
+////                    anchors.leftMargin: menuMargins
+////                    anchors.verticalCenter: parent.verticalCenter
+////                }
+////            }
+
+////            Action {
+////                id: disableAllAction
+////                checkable: true
+////                checked: false
+////            }
+
+////            Action {
+////                id: disableSingleItemsAction
+////                checkable: true
+////                checked: false
+////            }
+
+////            Action {
+////                id: greyBackgroundAction
+////                checkable: true
+////                checked: false
+////            }
+
+////            ListView {
+////                id: optionsListView
+////                width: parent.width
+////                anchors.top: optionsTitleBar.bottom
+////                anchors.bottom: parent.bottom
+////                clip: true
+////                interactive: delegateHeight * count > height
+
+////                readonly property int delegateHeight: 64 * Flat.FlatStyle.scaleFactor
+
+////                model: [
+////                    { name: "Disable all", action: disableAllAction },
+////                    { name: "Disable single items", action: disableSingleItemsAction },
+////                    { name: "Grey background", action: greyBackgroundAction },
+////                    { name: "Exit", action: null }
+////                ]
+////                delegate: Rectangle {
+////                    id: optionDelegateItem
+////                    width: parent.width
+////                    height: optionsListView.delegateHeight
+
+////                    Rectangle {
+////                        width: parent.width
+////                        height: Flat.FlatStyle.onePixel
+////                        anchors.bottom: parent.bottom
+////                        color: Flat.FlatStyle.lightFrameColor
+////                    }
+
+////                    Loader {
+////                        sourceComponent: optionText !== "Exit"
+////                            ? optionsListView.checkBoxComponent : optionsListView.exitComponent
+////                        anchors.fill: parent
+////                        anchors.leftMargin: menuMargins
+
+////                        property string optionText: optionsListView.model[index].name
+////                        property int optionIndex: index
+////                    }
+////                }
+
+////                property Component checkBoxComponent: Item {
+////                    Label {
+////                        text: optionText
+////                        font.family: Flat.FlatStyle.fontFamily
+////                        font.pixelSize: Math.round(15 * Flat.FlatStyle.scaleFactor)
+////                        fontSizeMode: Text.Fit
+////                        renderType: Text.QtRendering
+////                        verticalAlignment: Text.AlignVCenter
+////                        color: Flat.FlatStyle.defaultTextColor
+////                        height: parent.height
+////                        anchors.left: parent.left
+////                        anchors.right: checkBox.left
+////                        anchors.rightMargin: Flat.FlatStyle.twoPixels
+////                    }
+
+////                    CheckBox {
+////                        id: checkBox
+////                        checked: optionsListView.model[optionIndex].action.checked
+////                        anchors.right: parent.right
+////                        anchors.rightMargin: menuMargins
+////                        anchors.verticalCenter: parent.verticalCenter
+////                        onCheckedChanged: optionsListView.model[optionIndex].action.checked = checkBox.checked
+////                    }
+////                }
+
+////                property Component exitComponent: MouseArea {
+////                    anchors.fill: parent
+////                    onClicked: window.close()//Qt.quit()
+
+////                    Label {
+////                        text: optionText
+////                        font.family: Flat.FlatStyle.fontFamily
+////                        font.pixelSize: Math.round(15 * Flat.FlatStyle.scaleFactor)
+////                        renderType: Text.QtRendering
+////                        color: Flat.FlatStyle.defaultTextColor
+////                        anchors.verticalCenter: parent.verticalCenter
+////                    }
+////                }
+
+////                Rectangle {
+////                    width: parent.height
+////                    height: 8 * Flat.FlatStyle.scaleFactor
+////                    rotation: -90
+////                    anchors.right: parent.left
+////                    transformOrigin: Item.TopRight
+
+////                    gradient: Gradient {
+////                        GradientStop {
+////                            color: Qt.rgba(0, 0, 0, 0.15)
+////                            position: 0
+////                        }
+////                        GradientStop {
+////                            color: Qt.rgba(0, 0, 0, 0.05)
+////                            position: 0.5
+////                        }
+////                        GradientStop {
+////                            color: Qt.rgba(0, 0, 0, 0)
+////                            position: 1
+////                        }
+////                    }
+////                }
+////            }
+////        }
+////    }
 }

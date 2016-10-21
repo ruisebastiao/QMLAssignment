@@ -11,3 +11,10 @@ unix:!android {
 }
 
 export(INSTALLS)
+
+SOURCES += \
+    $$PWD/event.cpp \
+    $$PWD/sqleventmodel.cpp
+
+
+HEADERS +=
