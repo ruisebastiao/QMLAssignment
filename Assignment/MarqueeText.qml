@@ -10,6 +10,11 @@ Item{
     Text{
         id:scrollingText
         x:tempX
+        font {
+            family:"Century Schoolbook L"
+            pixelSize: 22
+        }
+        color: "#0fbeb9"
     }
 
     Timer{
@@ -42,8 +47,6 @@ Item{
         onTriggered: {
             scrollingText.x = 0
         }
-
     }
-
 }
 

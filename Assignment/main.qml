@@ -124,25 +124,23 @@ Window {
 
     // try Marquee text element
         Rectangle{
-            color:"#0fbeb9"
-            opacity: 0.75
+            color:"pink"
+            opacity: 0.65
             border.width: 1
-            border.color: "pink"
+            border.color: "transparent"
             anchors.horizontalCenter: parent.horizontalCenter
             width:400
-            height:30
-            y:50
+            height:40
+            y:25
 
             MarqueeText{
                 id:text
                 width:390
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.horizontalCenter: parent.horizontalCenter
-                text:"import QtQuick 2.5import QtQuick.Window 2.2import QtQuick.Layouts 1.0import QtQuick.Controls.Styles 1.2"
+                text:"import QtQuick 2.5     import QtQuick.Window 2.2     import QtQuick.Layouts 1.0      import QtQuick.Controls.Styles 1.2"
             }
         }
-
-
 
 
         //*************************************************************************
