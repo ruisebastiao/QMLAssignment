@@ -46,7 +46,7 @@ Item{
         id: mediaPlayer
         autoPlay: true
         volume: 0.5
-        source: "music/tiltshifted_lost_neon_sun.mp3"
+        source: "qrc:/music/tiltshifted_lost_neon_sun.mp3"
         readonly property string title: !!metaData.author&& !!metaData.title
                                         ? qsTr("%1 - %2").arg(metaData.author).arg(metaData.title)
                                         : metaData.author|| metaData.title|| source
@@ -183,6 +183,7 @@ Item{
                 id: playButtonImage
                 source:  mediaPlayer.play() ? "qrc:/images/playnormal.png" : "qrc:/images/pausenormal.png"
                 enabled: mediaPlayer.hasAudio
+                smooth: playButtonMouseArea.containsMouse
 
                 MouseArea {
                     id: playButtonMouseArea

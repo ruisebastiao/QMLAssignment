@@ -122,19 +122,27 @@ Window {
         }
 
 
+    // try Marquee text element
+        Rectangle{
+            color:"#0fbeb9"
+            opacity: 0.75
+            border.width: 1
+            border.color: "pink"
+            anchors.horizontalCenter: parent.horizontalCenter
+            width:400
+            height:30
+            y:50
 
-//        Rectangle{
-//            width:50
-//            height:50
-//            color:"transparent"
+            MarqueeText{
+                id:text
+                width:390
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.horizontalCenter: parent.horizontalCenter
+                text:"import QtQuick 2.5import QtQuick.Window 2.2import QtQuick.Layouts 1.0import QtQuick.Controls.Styles 1.2"
+            }
+        }
 
-//            AnimatedImage{
-//                id:seatbeltwarning
-//                x:1520
-//                y:610
-//                source: "qrc:/images/seatbeltWarning.gif"
-//            }
-//        }
+
 
 
         //*************************************************************************

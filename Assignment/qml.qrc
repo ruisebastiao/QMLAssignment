@@ -29,5 +29,6 @@
         <file>images/comingcall.gif</file>
         <file>images/leftArrow.gif</file>
         <file>images/rightArrow.gif</file>
+        <file>MarqueeText.qml</file>
     </qresource>
 </RCC>
