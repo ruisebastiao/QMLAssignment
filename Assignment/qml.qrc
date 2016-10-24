@@ -29,6 +29,5 @@
         <file>images/comingcall.gif</file>
         <file>images/leftArrow.gif</file>
         <file>images/rightArrow.gif</file>
-        <file>music/Kalimba.mp3</file>
     </qresource>
 </RCC>

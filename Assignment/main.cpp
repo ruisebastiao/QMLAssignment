@@ -14,6 +14,7 @@
 #include <QtQuick/QQuickItem>
 #include <QtQml/QQmlContext>
 #include "touchsettings.h"
+#include <QMediaPlayer>
 
 #include "qtquickcontrolsapplication.h"
 #include "sqleventmodel.h"

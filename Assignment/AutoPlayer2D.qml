@@ -46,7 +46,7 @@ Item{
         id: mediaPlayer
         autoPlay: true
         volume: 0.5
-        source: "qrc:/music/Kalimba.mp3"
+        source: "music/tiltshifted_lost_neon_sun.mp3"
         readonly property string title: !!metaData.author&& !!metaData.title
                                         ? qsTr("%1 - %2").arg(metaData.author).arg(metaData.title)
                                         : metaData.author|| metaData.title|| source
