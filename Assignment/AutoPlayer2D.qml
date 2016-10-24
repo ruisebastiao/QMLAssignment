@@ -19,6 +19,18 @@ Item{
     property bool isHoverEnabled: false
     property int millisecondsPerBar: 68
     property int mediaLatencyOffset: 68
+    property alias mediaPlayer2D: mediaPlayer
+    property alias playButtonImage: playButtonImage
+    property alias playButtonMouseArea: playButtonMouseArea
+    property alias trackDuration: trackDuration
+    property alias positionSlider: positionSlider
+    property alias libraryMouseArea: libraryMouseArea
+    property alias image1: image1
+    property alias musicrow: musicrow
+    property alias trackInfo: trackInfo
+    property alias musicPlayer: musicPlayer
+    property alias trackLibrary: trackLibrary
+
     //property int buttonHorizontalMargin: 10
 
 
@@ -28,69 +40,17 @@ Item{
 
 */
 
-
-//    state: "stopped"
-//    states: [
-//        State {
-//            name: "playing"
-//            PropertyChanges {
-//                target: playButtonImage
-//                source: {
-//                    if (playButtonMouseArea.containsMouse)
-//                        "qrc:/images/pausehoverpressed.png"
-//                    else
-//                        "qrc:/images/pausenormal.png"
-//                }
-//            }
-//            PropertyChanges {
-//                target: stopButtonImage
-//                source: "qrc:/images/stopnormal.png"
-//            }
-//        },
-//        State {
-//            name: "paused"
-//            PropertyChanges {
-//                target: playButtonImage
-//                source: {
-//                    if (playButtonMouseArea.containsMouse)
-//                        "qrc:/images/playhoverpressed.png"
-//                    else
-//                        "qrc:/images/playnormal.png"
-//                }
-//            }
-//            PropertyChanges {
-//                target: stopButtonImage
-//                source: "qrc:/images/stopnormal.png"
-//            }
-//        },
-//        State {
-//            name: "stopped"
-//            PropertyChanges {
-//                target: playButtonImage
-//                source: "qrc:/images/playnormal.png"
-//            }
-//            PropertyChanges {
-//                target: stopButtonImage
-//                source: "qrc:/images/stopdisabled.png"
-//            }
-//        }
-//    ]
-
     Component.onCompleted: isHoverEnabled = touchSettings.isHoverEnabled()
 
     MediaPlayer {
         id: mediaPlayer
         autoPlay: true
-        volume: 0.6
-        source: "qrc:/music/tiltshifted_lost_neon_sun.mp3"
+        volume: 0.5
+        source: "qrc:/music/Kalimba.mp3"
         readonly property string title: !!metaData.author&& !!metaData.title
                                         ? qsTr("%1 - %2").arg(metaData.author).arg(metaData.title)
                                         : metaData.author|| metaData.title|| source
 
-        onStatusChanged: {
-            if (status == MediaPlayer.EndOfMedia)
-                state = "stopped"
-        }
     }
 
 
@@ -101,7 +61,7 @@ Item{
             id: trackInfo
             anchors.top: musicPlayer.top
 
-            x: 0
+            //x: 0
             width: 480
             height: 14
             color: "#0fbeb9"
@@ -125,21 +85,21 @@ Item{
 
             Item {
                 id: trackLibrary
-                width: 61
-                height: 50
+                width: 40
+                height: 40
                 visible: true
 
                 Image {
-                    source: libraryMouseArea.pressed ? "images/musicIcon1.png" : "images/musicIcon1.png"
-                    scale: libraryMouseArea.containsMouse ? 0.7 : 1.0
+                    id: image1
+                    source: libraryMouseArea.pressed ? "qrc:/images/openfilehoverpressed.png" : "qrc:/images/openfilenormal.png"
                     smooth: libraryMouseArea.containsMouse
 
                     MouseArea {
                         id: libraryMouseArea
                         x: 0
                         y: 0
-                        width: 61
-                        height: 50
+                        width: 40
+                        height: 40
                         anchors.fill: parent
                         anchors.margins: -10
                         hoverEnabled: true
@@ -218,96 +178,35 @@ Item{
                 text: Qt.formatTime(new Date(0, 0, 0, 0, minutes, seconds), qsTr("mm:ss"))
             }
 
-//            Rectangle {
-//                id: playButton
-//                height: 40
-//                width: 40
-//                anchors.bottom: parent.bottom
-//                anchors.bottomMargin: width
-//                x: parent.width / 2 - width - buttonHorizontalMargin
-//                color: "transparent"
-
-//                Image {
-//                    id: playButtonImage
-//                    source: "qrc:/images/pausenormal.png"
-//                }
-
-//                MouseArea {
-//                    id: playButtonMouseArea
-//                    anchors.fill: parent
-//                    hoverEnabled: isHoverEnabled
-//                    onClicked: {
-//                        if (mainview.state === 'paused' || mainview.state === 'stopped')
-//                            mainview.state = 'playing'
-//                        else
-//                            mainview.state = 'paused'
-//                    }
-//                    onEntered: {
-//                        if (mainview.state === 'playing')
-//                            playButtonImage.source = "qrc:/images/pausehoverpressed.png"
-//                        else
-//                            playButtonImage.source = "qrc:/images/playhoverpressed.png"
-//                    }
-//                    onExited: {
-//                        if (mainview.state === 'playing')
-//                            playButtonImage.source = "qrc:/images/pausenormal.png"
-//                        else
-//                            playButtonImage.source = "qrc:/images/playnormal.png"
-//                    }
-//                }
-//            }
-
-
-//            Rectangle {
-//                id: stopButton
-//                height: 40
-//                width: 40
-//                anchors.bottom: parent.bottom
-//                anchors.bottomMargin: width
-//                x: parent.width / 2 + buttonHorizontalMargin
-//                color: "transparent"
-
-//                Image {
-//                    id: stopButtonImage
-//                    source: "qrc:/images/stopnormal.png"
-//                }
-
-//                MouseArea {
-//                    anchors.fill: parent
-//                    hoverEnabled: isHoverEnabled
-//                    onClicked: mainview.state = 'stopped'
-//                    onEntered: {
-//                        if (mainview.state !== 'stopped')
-//                            stopButtonImage.source = "qrc:/images/stophoverpressed.png"
-//                    }
-//                    onExited: {
-//                        if (mainview.state !== 'stopped')
-//                            stopButtonImage.source = "qrc:/images/stopnormal.png"
-//                    }
-//                }
-//            }
-
 
             Image {
-                id: audiocontrol
-                source:  mediaPlayer.play() ? "images/playIcon1.png" : "images/pauseIcon1.png"
-                scale: musicPlayMouseArea.containsMouse ? 0.7 : 1.0
-
+                id: playButtonImage
+                source:  mediaPlayer.play() ? "qrc:/images/playnormal.png" : "qrc:/images/pausenormal.png"
                 enabled: mediaPlayer.hasAudio
-                MouseArea {
-                    id: musicPlayMouseArea
-                    anchors.fill: parent
 
+                MouseArea {
+                    id: playButtonMouseArea
+                    anchors.fill: parent
+                    hoverEnabled: true
                     onPressed: {
                         if (mediaPlayer.playbackState !== MediaPlayer.PlayingState) {
-                            audiocontrol.source = "images/pauseIcon1.png"
+                            playButtonImage.source = "images/pausenormal.png"
                             mediaPlayer.play()
                         } else {
-                            audiocontrol.source = "images/playIcon1.png"
+                            playButtonImage.source = "images/playnormal.png"
                             mediaPlayer.pause()
                         }
                     }
+                    onEntered: {
+                        if (mediaPlayer.playbackState !== MediaPlayer.PlayingState) {
+                            playButtonImage.source = "images/playhoverpressed.png"
+                        } else {
+                            playButtonImage.source = "images/pausehoverpressed.png"
+                        }
+                    }
                 }
+
+
             }
         }
     }

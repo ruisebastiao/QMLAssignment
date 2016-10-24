@@ -1,19 +1,12 @@
 TEMPLATE = app
 
 #QT += qml quick widgets 3dextras 3dcore 3dquick multimedia sql
-QT += qml quick widgets core gui multimedia sql 3dlogic 3dinput 3dcollision 3drenderer
-
+QT += qml quick widgets core gui multimedia sql
 CONFIG += c++11
 
 
 SOURCES += main.cpp \
     touchsettings.cpp
-
-DISTFILES += \
-    Content.qml \
-    SettingsIcon.qml\
-    FirstItemWindow.qml\
-    SecondItemWindow.qml
 
 RESOURCES += qml.qrc
 

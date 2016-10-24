@@ -11,6 +11,9 @@ import QtQuick.Extras.Private 1.0
 import QtGraphicalEffects 1.0
 import org.qtproject.examples.calendar 1.0
 
+
+import "StarLine.js" as MyScript
+
 /**
 *
 * This class has implemented a Timeteller, includes both date and time.
@@ -27,6 +30,11 @@ Window {
     visible: true
     width: 1920
     height: 720
+
+    property alias autoVerticalGauge: autoVerticalGauge
+    property alias autoCircularGauge: autoCircularGauge
+    property alias autoStatusIndicator: autoStatusIndicator
+    property alias spriteAnimation: spriteAnimation
 
     property alias middleBoard: middleBoard
     property alias localTime: localTime
@@ -51,25 +59,93 @@ Window {
         height: 720
 
 
-        // MORE WORK: AT LEAST 5NEW ANIMATESPRITE SHALL BE ADDED
-        ColumnLayout {
-            x: 910
-            y: 106
-            width: 100
-            height: 100
-            Rectangle{
+        /*
+           SECTION 1: AUTO GAUGE & INDICATOR
+         */
+
+        Rectangle {
+            id: autoCircularGauge
+            Component.onCompleted: MyScript.createAutoCircularGauge();
+        }
+
+        Rectangle {
+            id: autoVerticalGauge
+            Component.onCompleted: MyScript.createAutoVerticalGauge();
+        }
+
+        Rectangle {
+            id: autoStatusIndicator
+            Component.onCompleted: MyScript.createAutoStatusIndicator();
+        }
+
+        Rectangle{
+            id:spriteAnimation
+            Component.onCompleted: MyScript.createSpriteAnimation();
+        }
+
+
+        //************************************************************************* indicator and notification
+        Rectangle{
+            id:comingcall
+            x: 240
+            y:450
+            width:330
+            height:248
+            color:"transparent"
+
+            AnimatedImage{
                 anchors.fill: parent
-                color:"transparent"
-                AnimatedImage {
-                    id: weatherinfo
-                    x: 0
-                    y: 0
-                    width: 100
-                    height: 100
-                    source: "qrc:/images/weatherinfo.gif"
-                }
+                source: "qrc:/images/comingcall.gif"
             }
         }
+
+        Rectangle{
+            id:arrows
+            width:50
+            height:50
+            color:"transparent"
+
+            AnimatedImage{
+                id:leftarrow
+                x:1520
+                y:610
+                source: "qrc:/images/leftArrow.gif"
+            }
+
+            AnimatedImage{
+                id:rightarrow
+                x:1600
+                y:610
+                source: "qrc:/images/rightArrow.gif"
+            }
+
+        }
+
+
+
+//        Rectangle{
+//            width:50
+//            height:50
+//            color:"transparent"
+
+//            AnimatedImage{
+//                id:seatbeltwarning
+//                x:1520
+//                y:610
+//                source: "qrc:/images/seatbeltWarning.gif"
+//            }
+//        }
+
+
+        //*************************************************************************
+
+
+
+
+        /*
+           SECTION 2: DIGITAL CLOCK
+         */
+
 
         ColumnLayout {
             id: clock
@@ -108,9 +184,9 @@ Window {
                     var showTheTime = new Date()
                     localTime.text = showTheTime.toLocaleTimeString(Qt.locale("en_US"),"hh:mm:ss")
                     localDate.text = showTheTime.toLocaleDateString(Qt.locale("en_US"))
-
                 }
             }
+
         }
 
 
@@ -120,8 +196,8 @@ Window {
 
         ColumnLayout {
             id: musicPlayer2D
-            x: 780
-            y: 376
+            x: 800
+            y: 375
             width: 360
             height: 71
 

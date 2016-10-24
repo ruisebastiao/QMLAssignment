@@ -1,32 +1,34 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
-        <file>images/pauseIcon1.png</file>
-        <file>images/playIcon1.png</file>
-        <file>images/musicIcon1.png</file>
         <file>background/background.png</file>
         <file>images/appIcon.ico</file>
-        <file>Content.qml</file>
         <file>images/tickmark.png</file>
-        <file>ThirdItemWindow.qml</file>
         <file>images/albumcover.png</file>
-        <file>images/demotitle.png</file>
-        <file>images/normalmap.png</file>
         <file>images/pausehoverpressed.png</file>
         <file>images/pausenormal.png</file>
         <file>images/playhoverpressed.png</file>
         <file>images/playnormal.png</file>
-        <file>images/songtitle.png</file>
         <file>images/stopdisabled.png</file>
         <file>images/stophoverpressed.png</file>
         <file>images/stopnormal.png</file>
-        <file>meshes/circle.obj</file>
-        <file>meshes/progressbar.obj</file>
-        <file>music/visualization.raw</file>
         <file>music/tiltshifted_lost_neon_sun.mp3</file>
         <file>images/eventindicator.png</file>
-        <file>images/weatherinfo.gif</file>
         <file>AutoPlayer2D.qml</file>
         <file>CalendarEventHandler.qml</file>
+        <file>images/weatherinfo.png</file>
+        <file>StarLine.js</file>
+        <file>AutoCircularGauge.qml</file>
+        <file>AutoVerticalGauge.qml</file>
+        <file>AutoStatusIndicator.qml</file>
+        <file>images/calendarinfo.png</file>
+        <file>images/mapinfo.png</file>
+        <file>SpriteAnimation.qml</file>
+        <file>images/openfilehoverpressed.png</file>
+        <file>images/openfilenormal.png</file>
+        <file>images/comingcall.gif</file>
+        <file>images/leftArrow.gif</file>
+        <file>images/rightArrow.gif</file>
+        <file>music/Kalimba.mp3</file>
     </qresource>
 </RCC>
