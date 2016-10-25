@@ -19,8 +19,8 @@ Item {
 
             Image{
                 id:tacho
-                width:660//660
-                height:660//670
+                width:660
+                height:660
                 source: "qrc:/images/base/Tacho.png"
             }
 
@@ -32,10 +32,11 @@ Item {
                 height:660
                 source: "qrc:/images/needle/Needle.png"
 
-                RotationAnimation{
+               RotationAnimation{
                     target: tacho_needle
-                    from:-60
-                    to:180//360
+                    loops: Animation.Infinite
+                    from:180
+                    to:-60
                     duration:27000
                     running:true
 

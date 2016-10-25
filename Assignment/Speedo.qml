@@ -35,6 +35,7 @@ Item {
 
                 RotationAnimation{
                     target: speedo_needle
+                    loops: Animation.Infinite
                     from:-60
                     to:180//360
                     duration:27000
