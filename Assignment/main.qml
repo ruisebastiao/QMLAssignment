@@ -84,68 +84,83 @@ Window {
         }
 
 
-        //************************************************************************* indicator and notification
-        Rectangle{
-            id:comingcall
-            x: 240
-            y:450
-            width:330
-            height:248
-            color:"transparent"
+        ColumnLayout{
 
-            AnimatedImage{
+            x: 15
+            y: 32
+            width:660
+            height:660
+
+            Speedo{
                 anchors.fill: parent
-                source: "qrc:/images/comingcall.gif"
             }
         }
+
+
+        ColumnLayout{
+
+            x: 1248
+            y: 32
+            width:660
+            height:660
+
+            Tacho{
+                anchors.fill: parent
+            }
+        }
+
+//************************************************************************* indicator and notification
+        //        Rectangle{
+        //            id:comingcall
+        //            x: 240
+        //            y:450
+        //            width:330
+        //            height:248
+        //            color:"transparent"
+
+        //            AnimatedImage{
+        //                anchors.fill: parent
+        //                source: "qrc:/images/comingcall.gif"
+        //            }
+        //        }
 
         Rectangle{
             id:arrows
             width:50
             height:50
+            y:600
             color:"transparent"
 
             AnimatedImage{
                 id:leftarrow
                 x:1520
-                y:610
                 source: "qrc:/images/leftArrow.gif"
             }
 
             AnimatedImage{
                 id:rightarrow
                 x:1600
-                y:610
                 source: "qrc:/images/rightArrow.gif"
             }
 
         }
 
-
-    // try Marquee text element
         Rectangle{
-            color:"pink"
-            opacity: 0.65
-            border.width: 1
-            border.color: "transparent"
-            anchors.horizontalCenter: parent.horizontalCenter
-            width:400
+            color:"transparent"
+            //anchors.horizontalCenter: parent.horizontalCenter
+            width:190
             height:40
-            y:25
+            x:877
+            y:50
 
             MarqueeText{
                 id:text
-                width:390
+                width:216
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.horizontalCenter: parent.horizontalCenter
-                text:"import QtQuick 2.5     import QtQuick.Window 2.2     import QtQuick.Layouts 1.0      import QtQuick.Controls.Styles 1.2"
+                text:"ABS System    Gauge Mode    Tire Pressure    Air/Fuel Ratio    Engine Temp    Settings    Launch Mode"
             }
         }
-
-
-        //*************************************************************************
-
-
 
 
         /*

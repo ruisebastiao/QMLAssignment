@@ -30,5 +30,10 @@
         <file>images/leftArrow.gif</file>
         <file>images/rightArrow.gif</file>
         <file>MarqueeText.qml</file>
+        <file>images/base/Speedo.png</file>
+        <file>images/base/Tacho.png</file>
+        <file>images/needle/Needle.png</file>
+        <file>Speedo.qml</file>
+        <file>Tacho.qml</file>
     </qresource>
 </RCC>
