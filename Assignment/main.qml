@@ -63,6 +63,23 @@ Window {
            SECTION 1: AUTO GAUGE & INDICATOR
          */
 
+
+        Rectangle{
+            color:"transparent"
+            width:190
+            height:40
+            x:877
+            y:50
+
+            MarqueeText{
+                id:text
+                width:216
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.horizontalCenter: parent.horizontalCenter
+                text:"ABS System    Gauge Mode    Tire Pressure    Air/Fuel Ratio    Engine Temp    Settings    Launch Mode"
+            }
+        }
+
         Rectangle {
             id: autoCircularGauge
             Component.onCompleted: MyScript.createAutoCircularGauge();
@@ -83,29 +100,6 @@ Window {
             Component.onCompleted: MyScript.createSpriteAnimation();
         }
 
-
-        ColumnLayout{
-
-            Row{
-                width:660
-                height:660
-                anchors.fill: parent
-
-                Speedo{
-                    x: 15
-                    y: 32
-                    //anchors.fill: parent
-                }
-
-
-                Tacho{
-                    x: 1248
-                    y: 32
-                    //anchors.fill: parent
-                }
-            }
-        }
-
 //************************************************************************* indicator and notification
         //        Rectangle{
         //            id:comingcall
@@ -120,44 +114,6 @@ Window {
         //                source: "qrc:/images/comingcall.gif"
         //            }
         //        }
-
-        Rectangle{
-            id:arrows
-            width:50
-            height:50
-            y:600
-            color:"transparent"
-
-            AnimatedImage{
-                id:leftarrow
-                x:1520
-                source: "qrc:/images/leftArrow.gif"
-            }
-
-            AnimatedImage{
-                id:rightarrow
-                x:1600
-                source: "qrc:/images/rightArrow.gif"
-            }
-
-        }
-
-        Rectangle{
-            color:"transparent"
-            //anchors.horizontalCenter: parent.horizontalCenter
-            width:190
-            height:40
-            x:877
-            y:50
-
-            MarqueeText{
-                id:text
-                width:216
-                anchors.verticalCenter: parent.verticalCenter
-                anchors.horizontalCenter: parent.horizontalCenter
-                text:"ABS System    Gauge Mode    Tire Pressure    Air/Fuel Ratio    Engine Temp    Settings    Launch Mode"
-            }
-        }
 
 
         /*
@@ -240,5 +196,52 @@ Window {
                 anchors.fill: parent
             }
         }
+
+
+        /*
+           SECTION 5:SPEEDO AND TACHO, SIGNAL ARROWS
+         */
+        ColumnLayout{
+
+            Row{
+                width:660
+                height:660
+                anchors.fill: parent
+
+                Speedo{
+                    x: 15
+                    y: 32
+                }
+
+
+                Tacho{
+                    x: 1248
+                    y: 32
+                }
+            }
+        }
+
+        Rectangle{
+            id:arrows
+            width:50
+            height:50
+            y:600
+            color:"transparent"
+
+            AnimatedImage{
+                id:leftarrow
+                x:1520
+                source: "qrc:/images/leftArrow.gif"
+            }
+
+            AnimatedImage{
+                id:rightarrow
+                x:1600
+                source: "qrc:/images/rightArrow.gif"
+            }
+        }
+
+
+
     }
 }

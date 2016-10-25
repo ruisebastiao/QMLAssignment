@@ -3,21 +3,11 @@ import QtQuick.Window 2.0
 import QtQuick.Controls 1.2
 import QtGraphicalEffects 1.0
 import QtQuick.Layouts 1.1
+import QtQuick.Controls.Styles 1.4
 
 Item {
 
     id:speedoroot
-
-//    Timer {
-//        interval: 1000
-//        running: true
-//        repeat: true
-
-//        onTriggered: {
-//            tach_needle.angle =  Math.random() * 0.68
-//        }
-//    }
-
 
     Row{
         spacing: 100
@@ -42,18 +32,15 @@ Item {
                 width:660
                 height:660
                 source: "qrc:/images/needle/Needle.png"
-//                transform:Rotation{
-//                    id:tach_needle
-//                    origin.x:1
-//                    origin.y:0
-//                    Behavior on angle{
-//                        SpringAnimation{
-//                            spring:1
-//                            damping: 0.5
-//                            modulus: 360
-//                        }
-//                    }
-//                }
+
+                RotationAnimation{
+                    target: speedo_needle
+                    from:-60
+                    to:180//360
+                    duration:27000
+                    running:true
+
+                }
             }
         }
     }

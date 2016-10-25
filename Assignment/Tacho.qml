@@ -42,18 +42,15 @@ Item {
                 width:660
                 height:660
                 source: "qrc:/images/needle/Needle.png"
-//                transform:Rotation{
-//                    id:tach_needle
-//                    origin.x:1
-//                    origin.y:0
-//                    Behavior on angle{
-//                        SpringAnimation{
-//                            spring:1
-//                            damping: 0.5
-//                            modulus: 360
-//                        }
-//                    }
-//                }
+
+                RotationAnimation{
+                    target: tacho_needle
+                    from:-60
+                    to:180//360
+                    duration:27000
+                    running:true
+
+                }
             }
         }
     }
