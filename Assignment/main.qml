@@ -86,26 +86,23 @@ Window {
 
         ColumnLayout{
 
-            x: 15
-            y: 32
-            width:660
-            height:660
-
-            Speedo{
+            Row{
+                width:660
+                height:660
                 anchors.fill: parent
-            }
-        }
+
+                Speedo{
+                    x: 15
+                    y: 32
+                    //anchors.fill: parent
+                }
 
 
-        ColumnLayout{
-
-            x: 1248
-            y: 32
-            width:660
-            height:660
-
-            Tacho{
-                anchors.fill: parent
+                Tacho{
+                    x: 1248
+                    y: 32
+                    //anchors.fill: parent
+                }
             }
         }
 
