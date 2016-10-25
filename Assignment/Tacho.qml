@@ -8,17 +8,6 @@ Item {
 
     id:tachoroot
 
-//    Timer {
-//        interval: 1000
-//        running: true
-//        repeat: true
-
-//        onTriggered: {
-//            tach_needle.angle =  Math.random() * 0.68
-//        }
-//    }
-
-
     Row{
         spacing: 100
         Rectangle{
