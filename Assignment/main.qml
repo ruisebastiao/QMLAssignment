@@ -48,7 +48,7 @@ Window {
         id: backgroundImage
         x: 0
         y: 0
-        source: "background/background.png"
+        source: "qrc:/images/base/background.png"
     }
 
     Item {
@@ -231,13 +231,13 @@ Window {
             AnimatedImage{
                 id:leftarrow
                 x:1520
-                source: "qrc:/images/leftArrow.gif"
+                source: "qrc:/images/signal/leftArrow.gif"
             }
 
             AnimatedImage{
                 id:rightarrow
                 x:1600
-                source: "qrc:/images/rightArrow.gif"
+                source: "qrc:/images/signal/rightArrow.gif"
             }
         }
 

@@ -91,7 +91,7 @@ Item{
 
                 Image {
                     id: image1
-                    source: libraryMouseArea.pressed ? "qrc:/images/openfilehoverpressed.png" : "qrc:/images/openfilenormal.png"
+                    source: libraryMouseArea.pressed ? "qrc:/images/music/openfilehoverpressed.png" : "qrc:/images/music/openfilenormal.png"
                     smooth: libraryMouseArea.containsMouse
 
                     MouseArea {
@@ -141,7 +141,7 @@ Item{
 
                 style: SliderStyle {
                     handle: Image{
-                        source:"images/tickmark.png"
+                        source:"qrc:/images/music/tickmark.png"
                         width:17
                         height: 17
                     }
@@ -181,7 +181,7 @@ Item{
 
             Image {
                 id: playButtonImage
-                source:  mediaPlayer.play() ? "qrc:/images/playnormal.png" : "qrc:/images/pausenormal.png"
+                source:  mediaPlayer.play() ? "qrc:/images/music/playnormal.png" : "qrc:/images/music/pausenormal.png"
                 enabled: mediaPlayer.hasAudio
                 smooth: playButtonMouseArea.containsMouse
 
@@ -191,18 +191,18 @@ Item{
                     hoverEnabled: true
                     onPressed: {
                         if (mediaPlayer.playbackState !== MediaPlayer.PlayingState) {
-                            playButtonImage.source = "images/pausenormal.png"
+                            playButtonImage.source = "qrc:/images/music/pausenormal.png"
                             mediaPlayer.play()
                         } else {
-                            playButtonImage.source = "images/playnormal.png"
+                            playButtonImage.source = "qrc:/images/music/playnormal.png"
                             mediaPlayer.pause()
                         }
                     }
                     onEntered: {
                         if (mediaPlayer.playbackState !== MediaPlayer.PlayingState) {
-                            playButtonImage.source = "images/playhoverpressed.png"
+                            playButtonImage.source = "qrc:/images/music/playhoverpressed.png"
                         } else {
-                            playButtonImage.source = "images/pausehoverpressed.png"
+                            playButtonImage.source = "qrc:/images/music/pausehoverpressed.png"
                         }
                     }
                 }

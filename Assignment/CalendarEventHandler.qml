@@ -66,7 +66,7 @@ Item {
                             anchors.margins: -1
                             width: 12
                             height: width
-                            source: "qrc:/images/eventindicator.png"
+                            source: "qrc:/images/event/eventindicator.png"
                         }
 
                         Label {
@@ -160,7 +160,7 @@ Item {
                             anchors.topMargin: 0
                             width: 12
                             height: width
-                            source: "qrc:/images/eventindicator.png"
+                            source: "qrc:/images/event/eventindicator.png"
                         }
 
                         Rectangle {

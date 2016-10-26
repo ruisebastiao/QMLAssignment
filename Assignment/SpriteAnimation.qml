@@ -31,7 +31,7 @@ Item {
                 width: 95
                 height: 95
                 anchors.fill: parent
-                source: "qrc:/images/mapinfo.png"
+                source: "qrc:/images/apps/mapinfo.png"
                 frameWidth: 95
                 frameHeight: 95
                 frameDuration: 5500
@@ -58,7 +58,7 @@ Item {
                 width: 95
                 height: 95
                 anchors.fill: parent
-                source: "qrc:/images/weatherinfo.png"
+                source: "qrc:/images/apps/weatherinfo.png"
                 frameWidth: 95
                 frameHeight: 95
                 frameDuration: 25000
@@ -85,7 +85,7 @@ Item {
                 width: 95
                 height: 95
                 anchors.fill: parent
-                source: "qrc:/images/calendarinfo.png"
+                source: "qrc:/images/apps/calendarinfo.png"
                 frameWidth: 95
                 frameHeight: 95
                 frameDuration: 8000
