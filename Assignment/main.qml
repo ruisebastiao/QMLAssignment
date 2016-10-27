@@ -1,15 +1,15 @@
 import QtQuick 2.5
 import QtQuick.Window 2.2
 import QtQuick.Layouts 1.0
-import QtQuick.Controls.Styles 1.2
-import QtQuick.Dialogs 1.0
-import QtMultimedia 5.0
-import QtQuick.Controls 1.4
-import QtQuick.Controls.Styles.Flat 1.0 as Flat
-import QtQuick.Extras 1.4
-import QtQuick.Extras.Private 1.0
-import QtGraphicalEffects 1.0
-import org.qtproject.examples.calendar 1.0
+//import QtQuick.Controls.Styles 1.2
+//import QtQuick.Dialogs 1.0
+//import QtMultimedia 5.0
+//import QtQuick.Controls 1.4
+//import QtQuick.Controls.Styles.Flat 1.0 as Flat
+//import QtQuick.Extras 1.4
+//import QtQuick.Extras.Private 1.0
+//import QtGraphicalEffects 1.0
+//import org.qtproject.examples.calendar 1.0
 
 
 import "StarLine.js" as MyScript
@@ -31,8 +31,8 @@ Window {
     width: 1920
     height: 720
 
-    property alias autoVerticalGauge: autoVerticalGauge
-    property alias autoCircularGauge: autoCircularGauge
+    //property alias autoVerticalGauge: autoVerticalGauge
+    //property alias autoCircularGauge: autoCircularGauge
     property alias autoStatusIndicator: autoStatusIndicator
     property alias spriteAnimation: spriteAnimation
 
@@ -80,15 +80,15 @@ Window {
             }
         }
 
-        Rectangle {
-            id: autoCircularGauge
-            Component.onCompleted: MyScript.createAutoCircularGauge();
-        }
+//        Rectangle {
+//            id: autoCircularGauge
+//            Component.onCompleted: MyScript.createAutoCircularGauge();
+//        }
 
-        Rectangle {
-            id: autoVerticalGauge
-            Component.onCompleted: MyScript.createAutoVerticalGauge();
-        }
+//        Rectangle {
+//            id: autoVerticalGauge
+//            Component.onCompleted: MyScript.createAutoVerticalGauge();
+//        }
 
         Rectangle {
             id: autoStatusIndicator
@@ -170,8 +170,8 @@ Window {
 
         ColumnLayout {
             id: musicPlayer2D
-            x: 800
-            y: 375
+            x: 780
+            y: 372
             width: 360
             height: 71
 

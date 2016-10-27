@@ -34,5 +34,9 @@
         <file>images/apps/mapinfo.png</file>
         <file>images/apps/weatherinfo.png</file>
         <file>images/event/eventindicator.png</file>
+        <file>images/audioPlayerClip.png</file>
+        <file>images/calendarEventClip.png</file>
+        <file>images/leftStatusIndicatorClip.png</file>
+        <file>images/rightStatusIndicatorClip.png</file>
     </qresource>
 </RCC>
