@@ -80,15 +80,15 @@ Window {
             }
         }
 
-//        Rectangle {
-//            id: autoCircularGauge
-//            Component.onCompleted: MyScript.createAutoCircularGauge();
-//        }
+        //        Rectangle {
+        //            id: autoCircularGauge
+        //            Component.onCompleted: MyScript.createAutoCircularGauge();
+        //        }
 
-//        Rectangle {
-//            id: autoVerticalGauge
-//            Component.onCompleted: MyScript.createAutoVerticalGauge();
-//        }
+        //        Rectangle {
+        //            id: autoVerticalGauge
+        //            Component.onCompleted: MyScript.createAutoVerticalGauge();
+        //        }
 
         Rectangle {
             id: autoStatusIndicator
@@ -100,7 +100,7 @@ Window {
             Component.onCompleted: MyScript.createSpriteAnimation();
         }
 
-//************************************************************************* indicator and notification
+        //************************************************************************* indicator and notification
         //        Rectangle{
         //            id:comingcall
         //            x: 240
@@ -121,6 +121,12 @@ Window {
          */
 
 
+        FontLoader{
+            id:localFont
+            source: "qrc:/font/ufonts.com_century-schoolbook-l-roman.ttf"
+
+        }
+
         ColumnLayout {
             id: clock
             anchors.verticalCenterOffset: -57
@@ -132,7 +138,7 @@ Window {
                 color: "#0fbeb9"
                 styleColor: "#000000"
                 font {
-                    family:"Century Schoolbook L"
+                    family:localFont.name//"Century Schoolbook L"
                     pixelSize: 50
                 }
                 anchors.horizontalCenter: parent.horizontalCenter
@@ -143,7 +149,7 @@ Window {
                 color: "#0fbeb9"
                 styleColor: "#000000"
                 font {
-                    family: "Century Schoolbook L"
+                    family: localFont.name//"Century Schoolbook L"
                     pixelSize: 20
                 }
                 anchors.horizontalCenter: parent.horizontalCenter
@@ -199,28 +205,22 @@ Window {
 
 
         /*
-           SECTION 5:SPEEDO AND TACHO, SIGNAL ARROWS
+           SECTION 5:SPEEDO AND TACHO
          */
         ColumnLayout{
+            width:1920
+            height:720
+            anchors.fill: parent
 
-            Row{
-                width:660
-                height:660
-                anchors.fill: parent
-
-                Speedo{
-                    x: 15
-                    y: 32
-                }
-
-
-                Tacho{
-                    x: 1248
-                    y: 32
-                }
+            Meters{
+                y:32
             }
+
         }
 
+        /*
+           SECTION 6:SIGNALS
+         */
         Rectangle{
             id:arrows
             width:50
@@ -240,8 +240,5 @@ Window {
                 source: "qrc:/images/signal/rightArrow.gif"
             }
         }
-
-
-
     }
 }

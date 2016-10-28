@@ -15,8 +15,6 @@
         <file>images/base/Speedo.png</file>
         <file>images/base/Tacho.png</file>
         <file>images/needle/Needle.png</file>
-        <file>Speedo.qml</file>
-        <file>Tacho.qml</file>
         <file>images/signal/leftArrow.gif</file>
         <file>images/signal/rightArrow.gif</file>
         <file>images/base/background.png</file>
@@ -38,5 +36,7 @@
         <file>images/calendarEventClip.png</file>
         <file>images/leftStatusIndicatorClip.png</file>
         <file>images/rightStatusIndicatorClip.png</file>
+        <file>font/ufonts.com_century-schoolbook-l-roman.ttf</file>
+        <file>Meters.qml</file>
     </qresource>
 </RCC>

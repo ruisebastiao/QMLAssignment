@@ -7,11 +7,19 @@ Item{
     property int tempX :0
     property alias text:scrollingText.text
 
+
+
+    FontLoader{
+        id:localFont
+        source: "qrc:/font/ufonts.com_century-schoolbook-l-roman.ttf"
+
+    }
+
     Text{
         id:scrollingText
         x:tempX
         font {
-            family:"Century Schoolbook L"
+            family:localFont.name
             pixelSize: 22
         }
         color: "#0fbeb9"
