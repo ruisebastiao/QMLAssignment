@@ -2,4 +2,4 @@
 
 A dashboard demo,only for testing.
 
-![Alt text](http://full/path/to/img.jpg "Optional title")
+![Alt text](https://github.com/cobratracysaur/QMLAssignment/blob/demoSample/DEMO1.png "demo")
