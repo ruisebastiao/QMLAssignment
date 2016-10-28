@@ -2,13 +2,7 @@ import QtQuick 2.5
 import QtQuick.Window 2.2
 import QtQuick.Layouts 1.0
 import QtQuick.Controls.Styles 1.2
-import QtQuick.Dialogs 1.0
-import QtMultimedia 5.0
 import QtQuick.Controls 1.4
-import QtQuick.Controls.Styles.Flat 1.0 as Flat
-import QtQuick.Extras 1.4
-import QtQuick.Extras.Private 1.0
-import QtGraphicalEffects 1.0
 import org.qtproject.examples.calendar 1.0
 
 
@@ -47,7 +41,7 @@ Item {
 
                     dayDelegate: Item {
                         readonly property color sameMonthDateTextColor: "#444"
-                        readonly property color selectedDateColor: calendarTextcolor
+                        readonly property color selectedDateColor: demoFontColor
                         readonly property color selectedDateTextColor: "white"
                         readonly property color differentMonthDateTextColor: "#bbb"
                         readonly property color invalidDatecolor: "#dddddd"
@@ -101,7 +95,7 @@ Item {
                         id: eventDayLabel
                         text: realcalendar.selectedDate.getDate()
                         font.pointSize: 35
-                        color: calendarTextcolor
+                        color: demoFontColor
                     }
 
                     Column {
@@ -111,13 +105,13 @@ Item {
                             readonly property var options: { weekday: "long" }
                             text: Qt.locale().standaloneDayName(realcalendar.selectedDate.getDay(), Locale.LongFormat)
                             font.pointSize: 18
-                            color: calendarTextcolor
+                            color: demoFontColor
                         }
                         Label {
                             text: Qt.locale().standaloneMonthName(realcalendar.selectedDate.getMonth())
                                   + realcalendar.selectedDate.toLocaleDateString(Qt.locale(), " yyyy")
                             font.pointSize: 9
-                            color: calendarTextcolor
+                            color: demoFontColor
                         }
                     }
                 }
@@ -139,7 +133,7 @@ Item {
                         color: "#000000"
                     }
                 }
-                border.color: "#0fbeb9"
+                border.color: demoFontColor
 
                 ListView {
                     id: eventsListView
@@ -166,7 +160,7 @@ Item {
                         Rectangle {
                             width: parent.width
                             height: 1
-                            color:"#0fbeb9"
+                            color:demoFontColor
                         }
 
                         Column {
@@ -187,7 +181,7 @@ Item {
                                 width: parent.width
                                 wrapMode: Text.Wrap
                                 text: modelData.startDate.toLocaleTimeString(realcalendar.locale, Locale.ShortFormat)
-                                color: "#0fbeb9"
+                                color: demoFontColor
                             }
                         }
                     }

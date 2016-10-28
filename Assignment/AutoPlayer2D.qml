@@ -1,16 +1,12 @@
-import QtQuick 2.5
+import QtQuick 2.0
 import QtQuick.Window 2.2
 import QtQuick.Layouts 1.0
 import QtQuick.Controls.Styles 1.2
 import QtQuick.Dialogs 1.0
 import QtMultimedia 5.0
 import QtQuick.Controls 1.2
-import QtQuick.Controls.Styles.Flat 1.0 as Flat
-import QtQuick.Extras 1.4
-import QtQuick.Extras.Private 1.0
 import QtGraphicalEffects 1.0
-import QtQuick 2.0
-import QtQuick.Layouts 1.2
+
 
 
 Item{

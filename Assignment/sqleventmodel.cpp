@@ -55,12 +55,12 @@ void SqlEventModel::createConnection()
     // Time has stored as seconds. Editing events here
 
     query.exec("create table Event (name TEXT, startDate DATE, startTime INT, endDate DATE, endTime INT)");
-    query.exec("insert into Event values('Try Hardware', '2016-10-26', 57600, '2016-10-26', 63000)");
-    query.exec("insert into Event values('Implement Graphics', '2016-10-25', 36000, '2016-10-25', 39600)");
-    query.exec("insert into Event values('Implement Speedo and Tacho', '2016-10-25', 57600, '2016-10-25', 61200)");
-    query.exec("insert into Event values('Needle bug fixing', '2016-10-25', 57600, '2016-10-25', 63000)");
-    query.exec("insert into Event values('Grocery Shopping', '2016-10-26', 71600, '2016-10-26', 75200)");
-    query.exec("insert into Event values('Conference, DemoDay', '2016-10-27', 32400, '2016-10-27', 61200)");
+    query.exec("insert into Event values('Run projects on Hardware', '2016-10-27', 57600, '2016-10-27', 63000)");
+    query.exec("insert into Event values('Implement Graphics', '2016-10-27', 36000, '2016-10-27', 39600)");
+    query.exec("insert into Event values('Implement Speedo and Tacho', '2016-10-28', 57600, '2016-10-28', 61200)");
+    query.exec("insert into Event values('Needle rotation fixed', '2016-10-28', 57600, '2016-10-28', 63000)");
+    query.exec("insert into Event values('Grocery Shopping', '2016-10-29', 71600, '2016-10-29', 75200)");
+    query.exec("insert into Event values('Conference, DemoDay', '2016-10-28', 32400, '2016-10-28', 61200)");
 
     return;
 }

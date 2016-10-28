@@ -1,16 +1,6 @@
 import QtQuick 2.5
 import QtQuick.Window 2.2
 import QtQuick.Layouts 1.0
-import QtQuick.Controls.Styles 1.2
-import QtQuick.Dialogs 1.0
-import QtMultimedia 5.0
-import QtQuick.Controls 1.4
-import QtQuick.Controls.Styles.Flat 1.0 as Flat
-import QtQuick.Extras 1.4
-import QtQuick.Extras.Private 1.0
-import QtGraphicalEffects 1.0
-import org.qtproject.examples.calendar 1.0
-
 
 import "StarLine.js" as MyScript
 
@@ -40,7 +30,7 @@ Window {
     property alias localTime: localTime
     property alias localDate: localDate
     property alias backgroundImage: backgroundImage
-    property color calendarTextcolor: "#0fbeb9"
+    property color demoFontColor: "#0fbeb9"
 
     title: "Dashboard MerFunction Demo"
 
@@ -100,7 +90,7 @@ Window {
             Component.onCompleted: MyScript.createSpriteAnimation();
         }
 
-//************************************************************************* indicator and notification
+        //************************************************************************* indicator and notification
         //        Rectangle{
         //            id:comingcall
         //            x: 240
@@ -121,6 +111,12 @@ Window {
          */
 
 
+        FontLoader{
+            id:localFont
+            source: "qrc:/font/ufonts.com_century-schoolbook-l-roman.ttf"
+
+        }
+
         ColumnLayout {
             id: clock
             anchors.verticalCenterOffset: -57
@@ -129,10 +125,10 @@ Window {
 
             Text {
                 id: localTime
-                color: "#0fbeb9"
+                color: demoFontColor
                 styleColor: "#000000"
                 font {
-                    family:"Century Schoolbook L"
+                    family:localFont.name
                     pixelSize: 50
                 }
                 anchors.horizontalCenter: parent.horizontalCenter
@@ -140,10 +136,10 @@ Window {
 
             Text {
                 id: localDate
-                color: "#0fbeb9"
+                color: demoFontColor
                 styleColor: "#000000"
                 font {
-                    family: "Century Schoolbook L"
+                    family: localFont.name
                     pixelSize: 20
                 }
                 anchors.horizontalCenter: parent.horizontalCenter
@@ -201,25 +197,17 @@ Window {
         /*
            SECTION 5:SPEEDO AND TACHO, SIGNAL ARROWS
          */
+
         ColumnLayout{
+            width:1920
+            height:720
+            anchors.fill: parent
 
-            Row{
-                width:660
-                height:660
-                anchors.fill: parent
-
-                Speedo{
-                    x: 15
-                    y: 32
-                }
-
-
-                Tacho{
-                    x: 1248
-                    y: 32
-                }
+            Meters{
+                y: 32
             }
         }
+
 
         Rectangle{
             id:arrows
